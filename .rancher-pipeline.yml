@@ -24,7 +24,7 @@ stages:
       path: ./charts
       catalogTemplate: html
       version: 1.0.${CICD_EXECUTION_SEQUENCE}
-      gitUrl: https://github.com/JackieYou/charts.git
+      gitUrl: https://github.com/JackieYou/pipeline-charts.git
       gitBranch: master
       gitAuthor: JackieYou
       gitEmail: jiqing@rancher.com
@@ -35,11 +35,5 @@ stages:
     - sourceName: pipeline-github
       sourceKey: PASSWORD
       targetKey: PASSWORD
-  - runScriptConfig:
-      image: harbor.youjiqing.xyz/rancher/busybox:latest
-      shellScript: |-
-        pwd
-        ls -al
-        mv charts pipeline
 timeout: 60
 notification: {}
