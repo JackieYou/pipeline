@@ -35,5 +35,12 @@ stages:
     - sourceName: pipeline-github
       sourceKey: PASSWORD
       targetKey: PASSWORD
+  - runScriptConfig:
+      image: harbor.youjiqing.xyz/rancher/busybox:latest
+      shellScript: |-
+        pwd
+        cd /tmp/repo
+        ls
+        mv charts pipeline
 timeout: 60
 notification: {}
