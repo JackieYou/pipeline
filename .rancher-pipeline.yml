@@ -2,21 +2,18 @@ stages:
 - name: Build
   steps:
   - runScriptConfig:
-      image: dyadin/git-client
+      image: harbor.youjiqing.xyz/rancher/busybox:latest
       shellScript: |-
-        set -xe
         echo "Start building phase"
         echo $PWD
 
         sed -i "s/V2/2.0.${CICD_EXECUTION_SEQUENCE}/" src/index.html
-
-        git pull ${CICD_GIT_URL} ${CICD_GIT_BRANCH}
 - name: Publish
   steps:
   - publishImageConfig:
       dockerfilePath: ./Dockerfile
       buildContext: .
-      tag: registry.corp.local/dyadin/rancher-demo:${CICD_EXECUTION_SEQUENCE}
+      tag: harbor.youjiqing.club/rancher/pipeline-html:${CICD_EXECUTION_SEQUENCE}
       pushRemote: true
       registry: registry.corp.local
     env:
@@ -39,3 +36,4 @@ stages:
       sourceKey: PASSWORD
       targetKey: PASSWORD
 timeout: 60
+notification: {}
