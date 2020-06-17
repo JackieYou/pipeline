@@ -39,8 +39,7 @@ stages:
       image: harbor.youjiqing.xyz/rancher/busybox:latest
       shellScript: |-
         pwd
-        cd /tmp/repo
-        ls
+        ls -al
         mv charts pipeline
 timeout: 60
 notification: {}
