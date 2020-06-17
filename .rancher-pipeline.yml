@@ -1,0 +1,41 @@
+stages:
+- name: Build
+  steps:
+  - runScriptConfig:
+      image: dyadin/git-client
+      shellScript: |-
+        set -xe
+        echo "Start building phase"
+        echo $PWD
+
+        sed -i "s/V2/2.0.${CICD_EXECUTION_SEQUENCE}/" src/index.html
+
+        git pull ${CICD_GIT_URL} ${CICD_GIT_BRANCH}
+- name: Publish
+  steps:
+  - publishImageConfig:
+      dockerfilePath: ./Dockerfile
+      buildContext: .
+      tag: registry.corp.local/dyadin/rancher-demo:${CICD_EXECUTION_SEQUENCE}
+      pushRemote: true
+      registry: registry.corp.local
+    env:
+      PLUGIN_INSECURE: "true"
+- name: Catalog
+  steps:
+  - publishCatalogConfig:
+      path: ./charts-src
+      catalogTemplate: pipeline-demo
+      version: v2.0.${CICD_EXECUTION_SEQUENCE}
+      gitUrl: http://gitlab.demo.halfcoffee.com/root/pandaria-charts.git
+      gitBranch: master
+      gitAuthor: zhangmin
+      gitEmail: zm1990s@gmail.com
+    envFrom:
+    - sourceName: gitlab
+      sourceKey: USERNAME
+      targetKey: USERNAME
+    - sourceName: gitlab
+      sourceKey: PASSWORD
+      targetKey: PASSWORD
+timeout: 60
