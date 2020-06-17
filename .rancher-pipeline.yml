@@ -21,7 +21,7 @@ stages:
 - name: Catalog
   steps:
   - publishCatalogConfig:
-      path: ./pipeline
+      path: ./charts
       catalogTemplate: html
       version: 1.0.${CICD_EXECUTION_SEQUENCE}
       gitUrl: https://github.com/JackieYou/charts.git
