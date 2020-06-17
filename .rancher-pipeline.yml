@@ -7,32 +7,32 @@ stages:
         echo "Start building phase"
         echo $PWD
 
-        sed -i "s/V2/2.0.${CICD_EXECUTION_SEQUENCE}/" src/index.html
+        # sed -i "s/V2/2.0.${CICD_EXECUTION_SEQUENCE}/" src/index.html
 - name: Publish
   steps:
   - publishImageConfig:
       dockerfilePath: ./Dockerfile
       buildContext: .
-      tag: harbor.youjiqing.club/rancher/pipeline-html:${CICD_EXECUTION_SEQUENCE}
+      tag: harbor.youjiqing.xyz/rancher/pipeline-html:${CICD_EXECUTION_SEQUENCE}
       pushRemote: true
-      registry: registry.corp.local
+      registry: harbor.youjiqing.xyz
     env:
       PLUGIN_INSECURE: "true"
 - name: Catalog
   steps:
   - publishCatalogConfig:
-      path: ./charts-src
+      path: ./charts
       catalogTemplate: pipeline-demo
-      version: v2.0.${CICD_EXECUTION_SEQUENCE}
-      gitUrl: http://gitlab.demo.halfcoffee.com/root/pandaria-charts.git
+      version: 1.0.${CICD_EXECUTION_SEQUENCE}
+      gitUrl: https://github.com/JackieYou/charts.git
       gitBranch: master
-      gitAuthor: zhangmin
-      gitEmail: zm1990s@gmail.com
+      gitAuthor: JackieYou
+      gitEmail: jiqing@rancher.com
     envFrom:
-    - sourceName: gitlab
+    - sourceName: pipeline-github
       sourceKey: USERNAME
       targetKey: USERNAME
-    - sourceName: gitlab
+    - sourceName: pipeline-github
       sourceKey: PASSWORD
       targetKey: PASSWORD
 timeout: 60
