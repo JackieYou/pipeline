@@ -41,7 +41,7 @@ questions:
   group: "SERVICE & INGRESS" 
 - variable: ingress.host
   required: true
-  default: pipeline.youjiqing.xyz
+  default: pipeline-html.youjiqing.xyz
   description: "Domain name to access you app, FQDN."
   type: string
   label: Host
