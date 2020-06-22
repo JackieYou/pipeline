@@ -29,10 +29,10 @@ stages:
       gitAuthor: JackieYou
       gitEmail: jiqing@rancher.com
     envFrom:
-    - sourceName: pipeline-github
+    - sourceName: github
       sourceKey: USERNAME
       targetKey: USERNAME
-    - sourceName: pipeline-github
+    - sourceName: github
       sourceKey: PASSWORD
       targetKey: PASSWORD
 timeout: 60
