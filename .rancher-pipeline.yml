@@ -14,7 +14,8 @@ stages:
       dockerfilePath: ./Dockerfile
       buildContext: .
       tag: demo.harbor.cnrancher.com/rancher/pipeline-html:${CICD_EXECUTION_SEQUENCE}
-      registry: harbor.youjiqing.xyz
+      pushRemote: true
+      registry: demo.harbor.cnrancher.com
     env:
       PLUGIN_INSECURE: "true"
 - name: Catalog
