@@ -4,7 +4,7 @@ app:
 deployment:
   replicas: "1"
   pullpolicy: IfNotPresent
-  image: harbor.youjiqing.xyz/rancher/pipeline-html:${CICD_EXECUTION_SEQUENCE}
+  image: demo.harbor.cnrancher.com/rancher/pipeline-html:${CICD_EXECUTION_SEQUENCE}
 
 service:
   type: ClusterIP
