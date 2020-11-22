@@ -13,8 +13,7 @@ stages:
   - publishImageConfig:
       dockerfilePath: ./Dockerfile
       buildContext: .
-      tag: harbor.youjiqing.xyz/rancher/pipeline-html:${CICD_EXECUTION_SEQUENCE}
-      pushRemote: true
+      tag: demo.harbor.cnrancher.com/rancher/pipeline-html:${CICD_EXECUTION_SEQUENCE}
       registry: harbor.youjiqing.xyz
     env:
       PLUGIN_INSECURE: "true"
