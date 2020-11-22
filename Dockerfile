@@ -1,4 +1,4 @@
-FROM harbor.youjiqing.xyz/rancher/nginx:latest
+FROM demo.harbor.cnrancher.com/library/nginx:latest
 WORKDIR /usr/share/nginx/html/
 RUN mkdir img
 ADD rancher-logo.svg img/
